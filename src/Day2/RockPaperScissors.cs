@@ -2,49 +2,19 @@
 {
     public static class RockPaperScissors
     {
-        public static int CalculatePart1(string input)
-        {
-            var splitInput = input.Split(" ");
-
-            return CalculateScore(splitInput[0], splitInput[1]);
-        }
-        //Opponent Choices
-        //A for Rock, B for Paper, and C for Scissors.
-        //Player Choices
-        //X for Rock, Y for Paper, and Z for Scissors
-        private static int CalculateScore(string opponentChoice, string playerChoice)
+        public static int CalculateScore(string input, IScoreStratergy scoreStratergy)
         {
             var score = 0;
-
-            switch (playerChoice)
+            var splitInputNewline = input.Split("\r\n");
+            foreach (var line in splitInputNewline)
             {
-                case "X":
-                    score += 1;
-                    break;
-                case "Y":
-                    score += 2;
-                    break;
-                case "Z":
-                    score += 3;
-                    break;
+                var splitMoves = line.Split(" ");
+                score += scoreStratergy.CalculateScore(splitMoves[0], splitMoves[1]);
+                
             }
-            //Draw
-            if (opponentChoice == playerChoice)
-            {
-                score += 3;
-            }
-            else switch (opponentChoice)
-                // ReSharper disable once BadChildStatementIndent
-                {
-                    case "A" when playerChoice == "Y":
-                    case "B" when playerChoice == "Z":
-                    case "C" when playerChoice == "X":
-                        score += 6;
-                        break;
-                }
 
             return score;
-        }
 
+        }
     }
 }
