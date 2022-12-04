@@ -4,16 +4,9 @@
     {
         public static int CalculateScore(string input, IScoreStratergy scoreStratergy)
         {
-            var score = 0;
             var splitInputNewline = input.Split("\r\n");
-            foreach (var line in splitInputNewline)
-            {
-                var splitMoves = line.Split(" ");
-                score += scoreStratergy.CalculateScore(splitMoves[0], splitMoves[1]);
-                
-            }
 
-            return score;
+            return splitInputNewline.Select(line => line.Split(" ")).Select(splitMoves => scoreStratergy.CalculateScore(splitMoves[0], splitMoves[1])).Sum();
 
         }
     }
