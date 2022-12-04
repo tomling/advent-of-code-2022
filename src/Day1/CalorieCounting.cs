@@ -1,6 +1,6 @@
 ﻿namespace Day1
 {
-    public static class ElfCalories
+    public static class CalorieCounting
     {
         public static int CalculateTask1(string input)
         {
