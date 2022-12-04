@@ -2,14 +2,14 @@
 {
     public static class CalorieCounting
     {
-        public static int CalculateTask1(string input)
+        public static int CalculatePart1(string input)
         {
 
             return ToList(input).Max();
 
         }
 
-        public static int CalculateTask2(string input)
+        public static int CalculatePart2(string input)
         {
 
             return ToList(input).OrderDescending().Take(3).Sum();
