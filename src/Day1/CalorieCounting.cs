@@ -5,18 +5,18 @@
         public static int CalculatePart1(string input)
         {
 
-            return ToList(input).Max();
+            return input.ToCalorieList().Max();
 
         }
 
         public static int CalculatePart2(string input)
         {
 
-            return ToList(input).OrderDescending().Take(3).Sum();
+            return input.ToCalorieList().OrderDescending().Take(3).Sum();
 
         }
 
-        private static List<int> ToList(string input)
+        private static IEnumerable<int> ToCalorieList(this string input)
         {
             return input.Split("\r\n\r\n").Select(s => s.Split("\r\n")).Select(numberSplit => numberSplit.Sum(Convert.ToInt32)).ToList();
         }
